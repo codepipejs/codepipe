@@ -1,0 +1,11 @@
+{
+  "name": "codepipe-srcs",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codepipejs/codepipe.git"
+  },
+  "devDependencies": {
+    "lerna": "^3.10.7"
+  }
+}
