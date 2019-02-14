@@ -1,4 +1,4 @@
-import { InterpolationType } from './types';
+import { InterpolationType, TreeNodeType, DirectiveType } from './types';
 
 /**
  * @description
@@ -7,9 +7,10 @@ import { InterpolationType } from './types';
  * 
  */
 export interface IContext {
-  $parent: any;
-	$this: any;
 	$model: any;
+	$parent?: any;
+	$this: any;
+	$key?: string; // current interpolation key
 }
 
 export interface IEngineOptions { }
@@ -22,20 +23,20 @@ export interface IEngineOptions { }
  */
 export interface ITranspiler {
 		
-	compile(templ: String, engineOptions?: IEngineOptions) : Promise<String> | String;
+	compile(templ: string, engineOptions?: IEngineOptions) : Promise<string> | string;
 
-	render(ctx: IContext) : Promise<String> | String;
+	render(ctx: IContext) : Promise<string> | string;
 
 }
 
 export interface IInterpolationExpression {
-	modifier?: String, 
-	iexp?: String
+	modifier?: string, 
+	iexp?: string
 }
 
 export interface IPathExpression {
-	owner?: String;
-	property?: String;
+	owner?: string;
+	property?: string;
 }
 
 export interface ILayer extends String {}
@@ -43,10 +44,29 @@ export interface ILayer extends String {}
 export interface IInterpolationValue {
 	value: any;
 	$this: any;
-	$key?: String;
+	$key?: string;
 }
 
 export interface IInterpolation {
 	type: InterpolationType;
 	value: IInterpolationValue[] | IInterpolationValue;
+}
+
+export interface INodeTree {
+	type: TreeNodeType;
+	path: string;
+	name: string;
+	size: string;
+	extension?: string;
+	children?: INodeTree[];
+}
+
+export interface INodeTemplate {
+	type: TreeNodeType;
+	path: string;
+	name: string;
+	extension?: string;
+	children?: INodeTemplate[];
+	context: IContext;
+	directive?: DirectiveType;
 }

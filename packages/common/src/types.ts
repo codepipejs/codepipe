@@ -17,3 +17,8 @@ export enum InterpolationType {
 	IterationObjects = '[Interpolation] Iteration objects',
 	InterationByKey  = '[Interpolation] Interation by Key'
 }
+
+export enum TreeNodeType {
+	File      = 'file',
+	Directory = 'directory'
+}

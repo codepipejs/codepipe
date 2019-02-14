@@ -46,15 +46,13 @@ import {
 // let exp4 = new Expression('${target.foo}.controller.js');
 // let exp5 = new Expression('${target}.controller.js');
 
-// let mr = new ModelResolver();
-
-// console.log(mr.resultOf(m1, exp1));
-// console.log(mr.resultOf(m2, exp2));
-// console.log(mr.resultOf(m3, exp3));
-// console.log(mr.resultOf(m4, exp4));
-// console.log(mr.resultOf(m5, exp5));
-// console.log(mr.resultOf(m6, exp5));
-// console.log(mr.resultOf(m6, exp3));
+// console.log(ModelResolver.resultOf(m1, exp1));
+// console.log(ModelResolver.resultOf(m2, exp2));
+// console.log(ModelResolver.resultOf(m3, exp3));
+// console.log(ModelResolver.resultOf(m4, exp4));
+// console.log(ModelResolver.resultOf(m5, exp5));
+// console.log(ModelResolver.resultOf(m6, exp5));
+// console.log(ModelResolver.resultOf(m6, exp3));
 
 describe('Resolver', () => {
 	describe('#layers', () => {
@@ -84,19 +82,18 @@ describe('Resolver', () => {
 			layer: new SomeClass()
 		};
 	
-		let mr = new ModelResolver();
 		let exp = new Expression('#foo');
 	
 		test('should resolve layer in json', () => {
-			expect(mr.resultOf(modelJson, exp)).toEqual('bar');
+			expect(ModelResolver.resultOf(modelJson, exp)).toEqual('bar');
 		})
 	
 		test('should resolve layer in Objects', () => {
-			expect(mr.resultOf(modelObj, exp)).toEqual('bar');
+			expect(ModelResolver.resultOf(modelObj, exp)).toEqual('bar');
 		})
 	
 		test('should resolve layer in Class', () => {
-			expect(mr.resultOf(modelClass, exp)).toEqual('bar');
+			expect(ModelResolver.resultOf(modelClass, exp)).toEqual('bar');
 		})
 	})
 })

@@ -30,5 +30,14 @@
   },
   "bugs": {
     "url": "https://github.com/codepipejs/codepipe/issues"
+  },
+  "dependencies": {
+    "@codepipe/common": "0.5.0",
+    "@codepipe/interpreter": "0.5.0",
+    "directory-tree": "^2.2.1",
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.121"
   }
 }

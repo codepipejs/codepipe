@@ -28,16 +28,16 @@ export class Interpreter {
 		throw new Error('Singleton class, cannot be instantiated');
 	}
 
-	static extractLayer(str: String): String {
+	static extractLayer(str: string): string {
 		let match = XRegExp.exec(
 			str.toString(),
 			XRegExp('^[#]{1}(?<layer>.+$)', 'x')
 		);
 
-		return <String>match['layer'];
+		return <string>match['layer'];
 	}
 
-	static extractInterpolation(str: String) : IInterpolationExpression | null {
+	static extractInterpolation(str: string) : IInterpolationExpression | null {
 		let match = XRegExp.exec(
 			str.toString(),
 			XRegExp('\\$(?<modifier>[tlpucsfC]+)?{(?<iexp>[\\$\\w\\.\\-\\_]+)}', 'x')
@@ -48,12 +48,12 @@ export class Interpreter {
 		}
 
 		return {
-			modifier: <String>match['modifier'],
-			iexp: <String>match['iexp']
+			modifier: <string>match['modifier'],
+			iexp: <string>match['iexp']
 		};
 	}
 
-	static extractPath(str: String): IPathExpression | null {
+	static extractPath(str: string): IPathExpression | null {
 		let match = XRegExp.exec(
 			str.toString(),
 			XRegExp('^(?<owner>([\\$\\w\\-\\_]+\\.)+)?(?<prop>[\\$\\w\\-\\_]+)$', 'x')
@@ -63,8 +63,8 @@ export class Interpreter {
 			return null;
 		}
 
-		let owner = <String>match['owner'];
-		let prop = <String>match['prop'];
+		let owner = <string>match['owner'];
+		let prop = <string>match['prop'];
 
 		// remove last dot
 		if (owner !== undefined && /\.$/g.test(owner.toString())) {
@@ -82,7 +82,7 @@ export class Interpreter {
 		};
 	}
 
-	static getExpressionType(str: String) : ExpressionType {
+	static getExpressionType(str: string) : ExpressionType {
 		if (this.isLayer(str)){
 			return ExpressionType.Layer;
 		}
@@ -94,7 +94,7 @@ export class Interpreter {
 		return ExpressionType.Literal;
 	}
 
-	static getDirectiveType(str: String): DirectiveType {
+	static getDirectiveType(str: string): DirectiveType {
 		if (this.isAuto(str)){
 			return DirectiveType.Auto;
 		}
@@ -106,31 +106,31 @@ export class Interpreter {
 		return DirectiveType.None;
 	}
 
-	static isLayer(str: String): Boolean {
+	static isLayer(str: string): Boolean {
 		return  /^#.+$/i.test(str.toString()) && !/^##.+$/i.test(str.toString());
 	}
 
-	static isAuto(str: String): Boolean {
+	static isAuto(str: string): Boolean {
 		return /^@.*$/i.test(str.toString()) && !/^@@.*$/i.test(str.toString());
 	}
 
-	static isInject(str: String): Boolean {
+	static isInject(str: string): Boolean {
 		return  /^!.*$/i.test(str.toString()) && !/^!!.*$/i.test(str.toString());
 	}
 
-	static hasDirective(str: String): Boolean {
+	static hasDirective(str: string): Boolean {
 		return  /^(@|!).*$/i.test(str.toString()) && !/^!!.*$/i.test(str.toString());
 	}
 
-	static isInterpolation(str: String): Boolean {
+	static isInterpolation(str: string): Boolean {
 		return /\$(:?[tlpucsfC]+)?{[\$\w\.\\-\\_]+}/i.test(str.toString());
 	}
 
-	static isModifier(str: String): Boolean {
+	static isModifier(str: string): Boolean {
 		return /^[tlpucsfC]+$}/i.test(str.toString());
 	}
 
-	static resolveModifier(modifier: String, value: String): String {
+	static resolveModifier(modifier: string, value: string): string {
 		if (this.isModifier(modifier)){
 			return value;
 		}

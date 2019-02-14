@@ -10,9 +10,12 @@ import {
 import { Expression } from "./expression";
 
 export class ModelResolver {
-	constructor(){}
 	
-	private result_(model: any, attr: String): any {
+	constructor(){
+		throw new Error('Singleton class, cannot be instantiated');
+	}
+	
+	private static result_(model: any, attr: string): any {
 		if (!_.hasIn(model, attr.toString())){
 			return null;
 		}
@@ -20,8 +23,8 @@ export class ModelResolver {
 		return _.result(model, attr.toString(), null);
 	}
 
-	private resolveInterpolation(model: any, exp: Expression): IInterpolation | null {
-		if (!_.hasIn(model, exp.path.owner.toString())){
+	private static resolveInterpolation(model: any, exp: Expression): IInterpolation | null {
+		if (!_.hasIn(model, exp.path.owner.toString()) && !/\$key|\$this/ig.test(exp.path.owner.toString())){
 			return null;
 		}
 
@@ -31,6 +34,15 @@ export class ModelResolver {
 			model, 
 			owner.toString()
 		);
+
+		// change the model for $this/$key expressions
+		if (owner === '$this') {
+			$this = model;
+		}
+		
+		if (owner === '$key') {
+			$this = model;
+		}
 
 		if (_.isArray($this)){
 			let vi;
@@ -57,7 +69,7 @@ export class ModelResolver {
 
 			let ivalue = _.map($this, (item) => {
 				return <IInterpolationValue>{
-					value: exp.transform(<String>this.result_(item, exp.path.property)),
+					value: exp.transform(<string>this.result_(item, exp.path.property)),
 					$this: item
 				};
 			});
@@ -75,7 +87,7 @@ export class ModelResolver {
 			if (exp.path.property == undefined || exp.path.property == '$key'){
 				ivalue = _.map(keys, (key) => {
 					return <IInterpolationValue>{
-						value: exp.transform(<String>key),
+						value: exp.transform(<string>key),
 						$this: $this[key],
 						$key: key
 					};
@@ -87,7 +99,6 @@ export class ModelResolver {
 				};
 			}
 			
-			console.log('ObjectValue')
 			return <IInterpolation>{
 				type: InterpolationType.ObjectValue,
 				value: <IInterpolationValue>{
@@ -111,7 +122,7 @@ export class ModelResolver {
 		return null;
 	}
 
-	resultOf(model: any, exp: Expression): ILayer | IInterpolation | any {
+	static resultOf(model: any, exp: Expression): ILayer | IInterpolation | any {
 		if (exp.type === ExpressionType.Layer){
 			return <ILayer>this.result_(model, `${NameConvention.LAYER_ATTRIBUTE_NAME}.${exp.value}`);
 		}
