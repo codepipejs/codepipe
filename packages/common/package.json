@@ -1,0 +1,34 @@
+{
+  "name": "@codepipe/common",
+  "version": "0.5.0",
+  "description": "Common things on Codepipe",
+  "keywords": [
+    "codepipe"
+  ],
+  "author": "Delmo <delmosaurio@gmail.com>",
+  "homepage": "https://github.com/codepipejs/codepipe#readme",
+  "license": "MIT",
+  "main": "lib/common.js",
+  "typings": "lib/common.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codepipejs/codepipe.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/codepipejs/codepipe/issues"
+  }
+}

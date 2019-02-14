@@ -1,0 +1,43 @@
+{
+  "name": "@codepipe/interpreter",
+  "version": "0.5.0",
+  "description": "File and folder names inerpretation for Codepipe",
+  "keywords": [
+    "codepipe"
+  ],
+  "author": "Delmo <delmosaurio@gmail.com>",
+  "homepage": "https://github.com/codepipejs/codepipe#readme",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codepipejs/codepipe.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/codepipejs/codepipe/issues"
+  },
+  "dependencies": {
+    "@codepipe/common": "0.5.0",
+    "lodash": "^4.17.11",
+    "xregexp": "^4.2.4"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.121",
+    "@types/xregexp": "^3.0.29"
+  }
+}

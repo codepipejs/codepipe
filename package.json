@@ -1,11 +1,25 @@
 {
   "name": "codepipe-srcs",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/codepipejs/codepipe.git"
   },
+  "scripts": {
+    "pretest": "lerna run build",
+    "test": "jest"
+  },
   "devDependencies": {
-    "lerna": "^3.10.7"
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/preset-env": "^7.3.1",
+    "@types/node": "^11.9.3",
+    "babel-jest": "^24.1.0",
+    "jest": "^24.1.0",
+    "lerna": "^3.10.7",
+    "typescript": "^3.3.3"
   }
 }
