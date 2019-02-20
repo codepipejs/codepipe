@@ -1,6 +1,6 @@
 {
   "name": "@codepipe/interpreter",
-  "version": "0.5.0",
+  "version": "0.0.1",
   "description": "File and folder names inerpretation for Codepipe",
   "keywords": [
     "codepipe"
@@ -32,7 +32,7 @@
     "url": "https://github.com/codepipejs/codepipe/issues"
   },
   "dependencies": {
-    "@codepipe/common": "0.5.0",
+    "@codepipe/common": "^0.0.1",
     "lodash": "^4.17.11",
     "xregexp": "^4.2.4"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@codepipe/cli",
-  "version": "0.5.0",
+  "version": "0.0.1",
   "description": "Codepipe's command line interface",
   "keywords": [
     "codepipe"
@@ -33,9 +33,9 @@
     "url": "https://github.com/codepipejs/codepipe/issues"
   },
   "dependencies": {
-    "@codepipe/common": "0.5.0",
-    "@codepipe/reducer": "0.5.0",
-    "@codepipe/transpiler": "0.5.0",
+    "@codepipe/common": "^0.0.1",
+    "@codepipe/reducer": "^0.0.1",
+    "@codepipe/transpiler": "^0.0.1",
     "chalk": "^2.4.2",
     "directory-tree": "^2.2.1",
     "ejs": "^2.6.1",

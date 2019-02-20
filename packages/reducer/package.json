@@ -1,6 +1,6 @@
 {
   "name": "@codepipe/reducer",
-  "version": "0.5.0",
+  "version": "0.0.1",
   "description": "Analyze and expand the directory tree of templates for Codepipe",
   "keywords": [
     "codepipe"
@@ -32,8 +32,8 @@
     "url": "https://github.com/codepipejs/codepipe/issues"
   },
   "dependencies": {
-    "@codepipe/common": "0.5.0",
-    "@codepipe/interpreter": "0.5.0",
+    "@codepipe/common": "^0.0.1",
+    "@codepipe/interpreter": "^0.0.1",
     "lodash": "^4.17.11"
   },
   "devDependencies": {

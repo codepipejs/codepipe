@@ -1,6 +1,6 @@
 {
   "name": "@codepipe/transpiler",
-  "version": "0.5.0",
+  "version": "0.0.1",
   "description": "Templates rendering for codepipe",
   "keywords": [
     "codepipe"
@@ -32,7 +32,7 @@
     "url": "https://github.com/codepipejs/codepipe/issues"
   },
   "dependencies": {
-    "@codepipe/common": "0.5.0",
+    "@codepipe/common": "^0.0.1",
     "fs-extra": "^7.0.1"
   },
   "devDependencies": {
