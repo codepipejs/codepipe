@@ -4,6 +4,20 @@
 
 Organize and use templates
 
+# CLI
+
+```
+npm i -g @codepipe/cli
+or
+yarn global add @codepipe/cli
+```
+
+# Usage
+
+```
+codepipe --help
+```
+
 # Model
 
 The model is just a json/object
