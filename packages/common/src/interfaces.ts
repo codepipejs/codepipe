@@ -15,6 +15,10 @@ export interface IContext {
 
 export interface IEngineOptions { }
 
+export interface ITemplate {
+	render(context: IContext | any) : Promise<string> | string | any;
+}
+
 /**
  * @description
  * 
@@ -23,9 +27,7 @@ export interface IEngineOptions { }
  */
 export interface ITranspiler {
 		
-	compile(templ: string, engineOptions?: IEngineOptions) : Promise<string> | string;
-
-	render(ctx: IContext) : Promise<string> | string;
+	compile(templ: string, engineOptions?: IEngineOptions | any) : Promise<ITemplate> | ITemplate | any;
 
 }
 
@@ -65,6 +67,7 @@ export interface INodeTemplate {
 	type: TreeNodeType;
 	path: string;
 	name: string;
+	relative?: string;
 	extension?: string;
 	children?: INodeTemplate[];
 	context: IContext;

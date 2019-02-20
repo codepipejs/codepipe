@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+'use strict';
+
+// source angular cli
+
+// Provide a title to the process in `ps`.
+// Due to an obscure Mac bug, do not start this title with any symbol.
+try {
+  process.title = 'codepipe ' + Array.from(process.argv).slice(2).join(' ');
+} catch(_) {
+  // If an error happened above, use the most basic title.
+  process.title = 'codepipe';
+}
+
+// Some older versions of Node do not support let or const.
+var version = process.version.substr(1).split('.');
+if (Number(version[0]) < 8 || (Number(version[0]) === 8 && Number(version[1]) < 9)) {
+  process.stderr.write(
+    [
+      'You are running version ' + process.version + ' of Node.js, which is not supported by Codepipe CLI.',
+      'The official Node.js version that is supported is 8.9 and greater.\n',
+      'Please visit https://nodejs.org/en/ to find instructions on how to update Node.js.'
+    ].join('\n')
+  );
+
+  process.exit(3);
+}
+
+require('../lib/cli');

@@ -1,4 +1,4 @@
-import { has, reduce, flatten, map } from 'lodash';
+import { filter, reduce, flatten, map } from 'lodash';
 import { TreeNodeType, INodeTree, INodeTemplate, IContext, ExpressionType, IInterpolation, InterpolationType, IInterpolationValue } from '@codepipe/common';
 import { ModelResolver, Expression } from '@codepipe/interpreter';
 
@@ -20,7 +20,7 @@ export class Reducer {
 	private static expand_(tree: INodeTree[], context: IContext): INodeTemplate[] {
 		return <INodeTemplate[]>reduce(tree, (res, value) => {
 			res.push(this.handler(value, context));
-			return flatten(res);
+			return filter(flatten(res), node => node !== null);
 		}, []);
 	}
 
@@ -39,6 +39,11 @@ export class Reducer {
 	private static handler(tree: INodeTree, ctx: IContext): INodeTemplate | INodeTemplate[] {
 		const exp = new Expression(tree.name);
 		const value = ModelResolver.resultOf(ctx.$this, exp);
+
+		// skiping the layer if not was setted in the model
+		if (value === null && exp.type === ExpressionType.Layer) {
+			return null;
+		}
 
 		if (value === null) {
 			throw new Error(`${exp.type}: no candidate for ${tree.name}`);
